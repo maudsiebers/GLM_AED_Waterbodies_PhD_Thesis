@@ -1,0 +1,132 @@
+&glm_setup
+   sim_name = 'Alton_Water'
+   max_layers = 500
+   min_layer_vol = 0.025
+   min_layer_thick = 0.15
+   max_layer_thick = 0.5
+   density_model = 1
+/
+&morphometry
+   lake_name = 'Alton_Water'
+   latitude = 51.9991
+   longitude = 1.1114
+   crest_elev = 23.77
+   bsn_len = 4500
+   bsn_wid = 400
+   bsn_vals = 19
+   H = 6.37, 7.37, 8.37, 9.37, 10.37, 11.37, 12.37, 13.37, 14.37, 15.37, 16.37, 17.37, 18.37, 19.37, 20.37, 21.37, 22.37, 23.37, 23.74
+   A = 0, 11147, 27973, 53287, 88582, 127688, 190940, 261630, 345359, 441710, 546712, 651461, 834340, 986379, 1132441, 1277291, 1416488, 1516735, 1564808
+/
+&wq_setup
+   wq_lib = 'aed2'
+   wq_nml_file = 'aed2ALT.nml'
+   ode_method = 1
+   split_factor = 1
+   bioshade_feedback = .true.
+   repair_state = .true.
+   mobility_off = .false.
+/
+&light
+   light_mode = 0
+   n_bands = 4
+   light_extc = 1, 0.5, 2, 4
+   energy_frac = 0.51, 0.45, 0.035, 0.005
+   Benthic_Imin = 10
+   Kw = 0.443848
+/
+&mixing
+   surface_mixing = 1
+   coef_mix_conv = 0.125
+   coef_wind_stir = 0.23
+   coef_mix_shear = 0.2
+   coef_mix_turb = 0.51
+   coef_mix_KH = 0.3
+   coef_mix_hyp = 0.2920332
+   deep_mixing = 2
+   diff = 0
+/
+&time
+   timefmt = 2
+   start = '2022-01-01'!'2016-01-01'
+   stop = '2023-12-31'
+   dt = 3600
+   num_days = 730
+   timezone = 0
+/
+&output
+   out_dir = 'C:/Users/ms128/GLM_AED_runs/Alton_Leven_Esth_original/Output'
+   out_fn = 'Output_Alton_H_'
+   nsave = 24
+   csv_lake_fname = 'Alton_Quant_H_'
+   csv_point_nlevs = 1
+   csv_point_fname = 'WQ_Alton_H_'
+csv_point_frombot = .false.
+   csv_point_at = 1
+   csv_point_nvars = 8
+   csv_point_vars = 'temp','OXY_oxy','NIT_amm','NIT_nit','PHS_frp','PHY_TCHLA','PHY_cyano','PHY_diatom'
+/
+&init_profiles
+   lake_depth = 17
+   num_depths = 3
+   the_depths = 0, 6, 15
+   the_temps = 6, 6, 6
+   the_sals = 0, 0, 0
+/
+&meteorology
+   met_sw = .true.
+   lw_type = 'LW_IN'
+   rain_sw = .false.
+   atm_stab = 0
+   fetch_mode = 0
+   catchrain = .true.
+   albedo_mode = 1
+   cloud_mode = 2
+   meteo_fl = 'MetAlton.csv'
+   subdaily = .true.
+   wind_factor = 0.7
+   sw_factor = 1
+   lw_factor = 0.992981
+   at_factor = 1
+   rh_factor = 1
+   rain_factor = 1
+   cd = 0.0013
+   ce = 0.0013
+   ch = 0.0013
+   time_fmt = 'YYYY-MM-DD hh:mm:ss'
+/
+&inflow
+   num_inflows = 3
+   names_of_strms = 'Sproughton','Bucklesham','TattingstoneNatural'
+   subm_flag = .false., .false., .false.
+   strm_hf_angle = 120, 120, 120
+   strmbd_slope = 2, 2, 2
+   strmbd_drag = 0.02, 0.02, 0.02
+   inflow_factor = 1, 1, 1
+   inflow_fl = 'InflowSproughton_total_nut.csv','InflowBuck_total_nut.csv','InflowTat_total_nut.csv'
+   inflow_varnum = 7
+   inflow_vars = 'FLOW','SALT','PHS_frp','NIT_amm','NIT_nit','CAR_pH','PHS_frp_ads'
+/
+&outflow
+   num_outlet = 1
+   outlet_type = 1
+   outl_elvs = 14.6
+   bsn_len_outl = 4500
+   bsn_wid_outl = 400
+   outflow_fl = 'OutflowAlton_new_data.csv'
+   outflow_factor = 1
+/
+&sediment
+   sed_heat_Ksoil = 0
+   sed_temp_depth = 0.2
+   sed_temp_mean = 3.90723489664556, 15.6629003494779
+   sed_temp_amplitude = 6, 8, 10
+   sed_temp_peak_doy = 190, 180, 170
+   benthic_mode = 1
+   n_zones = 3
+   zone_heights = 10, 20, 50
+   sed_reflectivity = 0.1, 0.01, 0.01
+   sed_roughness = 0.1, 0.01, 0.01
+/
+&debugging
+   disable_evap = .false.
+/
